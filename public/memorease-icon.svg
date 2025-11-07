@@ -1,0 +1,19 @@
+<svg width="128" height="128" viewBox="0 0 128 128" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Outer circle for app icon -->
+  <rect width="128" height="128" rx="32" fill="#059669" opacity="0.1"/>
+  
+  <!-- Gift box base -->
+  <path d="M45 55L64 42L83 55V85C83 91.627 77.627 97 71 97H57C50.373 97 45 91.627 45 85V55Z" fill="#059669"/>
+  
+  <!-- Gift box ribbon -->
+  <rect x="60" y="42" width="8" height="55" fill="#10b981"/>
+  
+  <!-- Heart inside gift -->
+  <path d="M64 65C64 65 58 60 55 63C53 65 54 70 64 78C74 70 75 65 73 63C70 60 64 65 64 65Z" fill="white"/>
+  
+  <!-- Sparkle accents -->
+  <circle cx="48" cy="50" r="2" fill="#10b981"/>
+  <circle cx="80" cy="48" r="2" fill="#10b981"/>
+  <circle cx="85" cy="65" r="1.5" fill="#10b981" opacity="0.6"/>
+  <circle cx="42" cy="70" r="1.5" fill="#10b981" opacity="0.6"/>
+</svg>
