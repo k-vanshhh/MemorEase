@@ -1,14 +1,3 @@
-#!/usr/bin/env node
-/**
- * gemini-convert.js
- * Usage:
- *   node gemini-convert.js                # dry-run: writes converted files to ./converted/
- *   node gemini-convert.js --apply        # overwrite original files (DANGEROUS — commit first!)
- *   node gemini-convert.js --dir components/ui --ext .tsx --out converted --prompt "..." 
- *
- * Requirements: gemini CLI installed & authenticated in your shell.
- */
-
 import fs from "fs/promises";
 import path from "path";
 import { exec } from "child_process";

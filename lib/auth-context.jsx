@@ -1,46 +1,40 @@
 "use client"
 
 import { createContext, useContext, useEffect, useState } from "react"
-import { setAuthToken } from "./api"
+import { setAuthToken } from "./api.js"
 
-const AuthContext = createContext(undefined)
+const AuthContext = createContext(null)
 
 export function AuthProvider({ children }) {
   const [user, setUser] = useState(null)
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    const initAuth = async () => {
-      const token = localStorage.getItem("token")
-      const storedUser = localStorage.getItem("user")
+    // Load user from localStorage on mount
+    const storedUser = localStorage.getItem("user")
+    const token = localStorage.getItem("token")
 
-      if (token && storedUser) {
-        setAuthToken(token)
-        setUser(JSON.parse(storedUser))
-      }
-
-      setLoading(false)
+    if (storedUser && token) {
+      setUser(JSON.parse(storedUser))
+      setAuthToken(token)
     }
-
-    initAuth()
+    setLoading(false)
   }, [])
 
   const logout = () => {
-    localStorage.removeItem("token")
     localStorage.removeItem("user")
+    localStorage.removeItem("token")
+    setAuthToken(null)
     setUser(null)
-    setAuthToken("")
   }
 
-  return (
-    <AuthContext.Provider value={{ user, loading, isAuthenticated: !!user, logout }}>{children}</AuthContext.Provider>
-  )
+  return <AuthContext.Provider value={{ user, setUser, loading, logout }}>{children}</AuthContext.Provider>
 }
 
 export function useAuth() {
   const context = useContext(AuthContext)
-  if (context === undefined) {
-    throw new Error("useAuth must be used within AuthProvider")
+  if (!context) {
+    throw new Error("useAuth must be used within an AuthProvider")
   }
   return context
 }

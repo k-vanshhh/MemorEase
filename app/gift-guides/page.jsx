@@ -1,6 +1,6 @@
 "use client"
-import { Card } from "../../components/ui/card.jsx"
-import { Button } from "../../components/ui/button.jsx"
+import { Card } from "../../../components/ui/card.jsx"
+import { Button } from "../../../components/ui/button.jsx"
 import Image from "next/image"
 
 export default function GiftGuidesPage() {

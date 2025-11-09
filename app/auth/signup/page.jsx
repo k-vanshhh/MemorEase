@@ -2,10 +2,10 @@
 
 import { useState } from "react"
 import { useRouter } from "next/navigation"
-import { authAPI } from "../../lib/api.js"
-import { Button } from "../../components/ui/button.jsx"
-import { Input } from "../../components/ui/input.jsx"
-import { Card } from "../../components/ui/card.jsx"
+import { authAPI } from "../../../lib/api.js"
+import { Button } from "../../../components/ui/button.jsx"
+import { Input } from "../../../components/ui/input.jsx"
+import { Card } from "../../../components/ui/card.jsx"
 import Link from "next/link"
 
 export default function SignupPage() {
