@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 import { ShoppingCart } from "lucide-react"
-import { Button } from "@/components/ui/button"
+import { Button } from "./ui/button.jsx"
 
 export default function ProductGrid() {
   const [cart, setCart] = useState([])

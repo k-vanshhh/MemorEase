@@ -1,11 +1,11 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { searchAPI } from "@/lib/api"
-import { Input } from "@/components/ui/input"
-import { Card } from "@/components/ui/card"
-import { Select } from "@/components/ui/select"
-import { Slider } from "@/components/ui/slider"
+import { searchAPI } from "../../lib/api.js"
+import { Input } from "../../components/ui/input.jsx"
+import { Card } from "../../components/ui/card.jsx"
+import { Select } from "../../components/ui/select.jsx"
+import { Slider } from "../../components/ui/slider.jsx"
 import Image from "next/image"
 
 const categories = ["All", "Prints", "Jewelry", "Ceramics", "Textiles", "Personalized"]

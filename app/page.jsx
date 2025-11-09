@@ -1,11 +1,11 @@
-import Header from "./Header"
-import Hero from "./Hero"
-import SearchExplore from "./SearchExplore"
-import HowItWorks from "./HowItWorks"
-import ProductGrid from "./ProductGrid"
-import ArtistSpotlight from "./ArtistSpotlight"
-import CallToAction from "./CallToAction"
-import Footer from "./Footer"
+import Header from "../components/header.jsx";
+import Hero from "../components/hero.jsx";
+import SearchExplore from "../components/search-explore.jsx";
+import HowItWorks from "../components/how-it-works.jsx";
+import ProductGrid from "../components/product-grid.jsx";
+import ArtistSpotlight from "../components/artist-spotlight.jsx";
+import CallToAction from "../components/call-to-action.jsx";
+import Footer from "../components/footer.jsx";
 
 export default function Home() {
   return (
@@ -19,5 +19,5 @@ export default function Home() {
       <CallToAction />
       <Footer />
     </main>
-  )
+  );
 }

@@ -1,4 +1,4 @@
-import { Button } from "@/components/ui/button"
+import { Button } from "./ui/button.jsx"
 export default function SearchExplore() {
   return (
     <section className="py-12 px-4 bg-background">

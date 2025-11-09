@@ -1,9 +1,9 @@
 "use client"
 
 import Link from "next/link"
-import { useAuth } from "@/lib/auth-context"
-import { Button } from "@/components/ui/button"
-import { ModernLogo } from "@/components/modern-logo"
+import { useAuth } from "../lib/auth-context.jsx"
+import { Button } from "./ui/button.jsx"
+import { ModernLogo } from "./modern-logo.jsx"
 
 export default function Header() {
   const { user, logout } = useAuth()

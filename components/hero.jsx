@@ -1,4 +1,4 @@
-import { Button } from "@/components/ui/button"
+import { Button } from "./ui/button.jsx"
 export default function Hero() {
   return (
     <section className="bg-gradient-to-b from-primary/10 to-background py-20 px-4 text-center">

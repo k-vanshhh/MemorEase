@@ -1,10 +1,4 @@
 const nextConfig = {
-  eslint: {
-    ignoreDuringBuilds: true,
-  },
-  typescript: {
-    ignoreBuildErrors: true,
-  },
   images: {
     remotePatterns: [
       {
@@ -13,6 +7,9 @@ const nextConfig = {
       },
     ],
     unoptimized: true,
+  },
+  server: {
+    port: 3005,
   },
 }
 

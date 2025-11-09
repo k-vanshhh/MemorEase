@@ -1,9 +1,9 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { artistAPI } from "@/lib/api"
-import { Card } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
+import { artistAPI } from "../../../lib/api.js"
+import { Card } from "../../../components/ui/card.jsx"
+import { Button } from "../../../components/ui/button.jsx"
 import Image from "next/image"
 import { useParams } from "next/navigation"
 

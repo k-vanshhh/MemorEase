@@ -2,11 +2,11 @@
 
 import { useState } from "react"
 import { useRouter } from "next/navigation"
-import { useAuth } from "@/lib/auth-context"
-import { authAPI } from "@/lib/api"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Card } from "@/components/ui/card"
+import { useAuth } from "../../lib/auth-context.jsx"
+import { authAPI } from "../../lib/api.js"
+import { Button } from "../../components/ui/button.jsx"
+import { Input } from "../../components/ui/input.jsx"
+import { Card } from "../../components/ui/card.jsx"
 import Link from "next/link"
 
 export default function LoginPage() {

@@ -1,11 +1,11 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { cartAPI, orderAPI } from "@/lib/api"
-import { useAuth } from "@/lib/auth-context"
-import { Button } from "@/components/ui/button"
-import { Card } from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
+import { cartAPI, orderAPI } from "../../lib/api.js"
+import { useAuth } from "../../lib/auth-context.jsx"
+import { Button } from "../../components/ui/button.jsx"
+import { Card } from "../../components/ui/card.jsx"
+import { Input } from "../../components/ui/input.jsx"
 import Link from "next/link"
 
 export default function CartPage() {

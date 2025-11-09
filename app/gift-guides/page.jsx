@@ -1,6 +1,6 @@
 "use client"
-import { Card } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
+import { Card } from "../../components/ui/card.jsx"
+import { Button } from "../../components/ui/button.jsx"
 import Image from "next/image"
 
 export default function GiftGuidesPage() {
@@ -18,7 +18,7 @@ export default function GiftGuidesPage() {
       title: "Baby Gifts",
       description: "Welcome new arrivals with sweet, memorable gift options",
       image: "/baby-gifts-newborn.jpg",
-      budget: "$20 - $80",
+      budget: "$20 - "$80",
       items: 18,
     },
     {
@@ -26,7 +26,7 @@ export default function GiftGuidesPage() {
       title: "Graduation Gifts",
       description: "Celebrate achievements with meaningful, memorable presents",
       image: "/graduation-gifts-achievement.jpg",
-      budget: "$30 - $150",
+      budget: "$30 - "$150",
       items: 22,
     },
     {
@@ -34,7 +34,7 @@ export default function GiftGuidesPage() {
       title: "Corporate Gifts",
       description: "Impress colleagues and clients with professional, artistic gifts",
       image: "/corporate-gifts-business.jpg",
-      budget: "$40 - $200",
+      budget: "$40 - "$200",
       items: 31,
     },
   ]

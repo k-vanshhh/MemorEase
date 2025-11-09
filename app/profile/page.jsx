@@ -1,11 +1,11 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import { useAuth } from "@/lib/auth-context"
-import { authAPI } from "@/lib/api"
-import { Button } from "@/components/ui/button"
-import { Card } from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
+import { useAuth } from "../../lib/auth-context.jsx"
+import { authAPI } from "../../lib/api.js"
+import { Button } from "../../components/ui/button.jsx"
+import { Card } from "../../components/ui/card.jsx"
+import { Input } from "../../components/ui/input.jsx"
 import Link from "next/link"
 
 export default function ProfilePage() {

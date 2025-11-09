@@ -1,11 +1,11 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { productAPI, reviewAPI, cartAPI } from "@/lib/api"
-import { useAuth } from "@/lib/auth-context"
-import { Button } from "@/components/ui/button"
-import { Card } from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
+import { productAPI, reviewAPI, cartAPI } from "../../../lib/api.js"
+import { useAuth } from "../../../lib/auth-context.jsx"
+import { Button } from "../../../components/ui/button.jsx"
+import { Card } from "../../../components/ui/card.jsx"
+import { Input } from "../../../components/ui/input.jsx"
 import Image from "next/image"
 import { useParams } from "next/navigation"
 
