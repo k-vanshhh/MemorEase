@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Login</title>
+    <style>
+        :root {
+            --bg-color: #f0f2f5;
+            --primary-color: #1a1a1a;
+            --accent-orange: #ff6b4a;
+            --accent-purple: #6c5ce7;
+            --accent-black: #2d3436;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        /* --- Main Card Container --- */
+        .login-card {
+            background: white;
+            width: 900px;
+            height: 600px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            display: flex;
+            overflow: hidden;
+        }
+
+        /* --- Left Side: Illustration Area --- */
+        .illustration-side {
+            width: 45%;
+            background-color: #f8f9fa;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            padding-bottom: 50px;
+        }
+
+        /* --- The Mascots (CSS Shapes) --- */
+        .mascot-group {
+            position: relative;
+            width: 300px;
+            height: 200px;
+        }
+
+        /* 1. Orange Semi-Circle Blob */
+        .blob-orange {
+            position: absolute;
+            bottom: 0;
+            left: 20px;
+            width: 120px;
+            height: 100px;
+            background: var(--accent-orange);
+            border-radius: 100px 100px 0 0;
+            /* Semi-circle */
+            z-index: 2;
+            transition: all 0.3s ease;
+        }
+
+        /* 2. Purple Rect Blob */
+        .blob-purple {
+            position: absolute;
+            bottom: 0;
+            left: 130px;
+            width: 80px;
+            height: 140px;
+            background: var(--accent-purple);
+            border-radius: 20px 20px 0 0;
+            z-index: 1;
+            transition: all 0.3s ease;
+        }
+
+        /* 3. Black Rect Blob */
+        .blob-black {
+            position: absolute;
+            bottom: 0;
+            left: 190px;
+            width: 70px;
+            height: 90px;
+            background: var(--accent-black);
+            border-radius: 15px 15px 0 0;
+            z-index: 3;
+            transition: all 0.3s ease;
+        }
+
+        /* --- Eyes & Interaction --- */
+        .eye {
+            background: white;
+            border-radius: 50%;
+            position: absolute;
+            overflow: hidden;
+        }
+
+        .pupil {
+            background: black;
+            border-radius: 50%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 40%;
+            height: 40%;
+            transition: width 0.2s, height 0.2s;
+            /* Blink effect */
+        }
+
+        /* Eyelid for "Hiding" mode */
+        .eyelid {
+            background: inherit;
+            /* Matches blob color */
+            position: absolute;
+            top: -100%;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 10;
+            transition: top 0.3s ease-in-out;
+        }
+
+        /* Positioning Eyes on Blobs */
+        .blob-orange .eye {
+            width: 24px;
+            height: 24px;
+            top: 30px;
+        }
+
+        .blob-orange .eye.left {
+            left: 30px;
+        }
+
+        .blob-orange .eye.right {
+            right: 30px;
+        }
+
+        .blob-orange .eyelid {
+            background: var(--accent-orange);
+        }
+
+        .blob-purple .eye {
+            width: 20px;
+            height: 20px;
+            top: 40px;
+        }
+
+        .blob-purple .eye.left {
+            left: 15px;
+        }
+
+        .blob-purple .eye.right {
+            right: 15px;
+        }
+
+        .blob-purple .eyelid {
+            background: var(--accent-purple);
+        }
+
+        .blob-black .eye {
+            width: 16px;
+            height: 16px;
+            top: 25px;
+        }
+
+        .blob-black .eye.left {
+            left: 15px;
+        }
+
+        .blob-black .eye.right {
+            right: 15px;
+        }
+
+        .blob-black .eyelid {
+            background: var(--accent-black);
+        }
+
+
+        /* --- Right Side: Form Area --- */
+        .form-side {
+            width: 55%;
+            padding: 60px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .header h1 {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            color: #888;
+            margin-bottom: 40px;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #eee;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+            outline: none;
+        }
+
+        input:focus {
+            border-color: var(--primary-color);
+        }
+
+        .btn-primary {
+            width: 100%;
+            padding: 15px;
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: transform 0.1s;
+        }
+
+        .btn-primary:active {
+            transform: scale(0.98);
+        }
+
+        .google-btn {
+            width: 100%;
+            padding: 12px;
+            background: white;
+            border: 2px solid #eee;
+            border-radius: 8px;
+            margin-top: 15px;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            font-weight: 500;
+        }
+
+        /* --- THE SHY STATE (Triggered by JS) --- */
+        /* When password is focused, eyelids drop down */
+        body.is-shy .eyelid {
+            top: 0%;
+        }
+
+        body.is-shy .blob-orange {
+            transform: translateY(10px);
+        }
+
+        body.is-shy .blob-purple {
+            transform: translateY(-10px) rotate(-5deg);
+        }
+
+        body.is-shy .blob-black {
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="login-card">
+        <div class="illustration-side">
+            <div class="mascot-group">
+                <div class="blob-purple">
+                    <div class="eye left">
+                        <div class="pupil"></div>
+                        <div class="eyelid"></div>
+                    </div>
+                    <div class="eye right">
+                        <div class="pupil"></div>
+                        <div class="eyelid"></div>
+                    </div>
+                </div>
+                <div class="blob-orange">
+                    <div class="eye left">
+                        <div class="pupil"></div>
+                        <div class="eyelid"></div>
+                    </div>
+                    <div class="eye right">
+                        <div class="pupil"></div>
+                        <div class="eyelid"></div>
+                    </div>
+                </div>
+                <div class="blob-black">
+                    <div class="eye left">
+                        <div class="pupil"></div>
+                        <div class="eyelid"></div>
+                    </div>
+                    <div class="eye right">
+                        <div class="pupil"></div>
+                        <div class="eyelid"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-side">
+            <div class="header">
+                <h1>Welcome back!</h1>
+                <p>Please enter your details</p>
+            </div>
+
+            <form>
+                <div class="input-group">
+                    <label>Email</label>
+                    <input type="email" placeholder="anna@gmail.com" id="emailInput">
+                </div>
+
+                <div class="input-group">
+                    <label>Password</label>
+                    <input type="password" placeholder="••••••••" id="passwordInput">
+                </div>
+
+                <button type="button" class="btn-primary">Log In</button>
+                <button type="button" class="google-btn">
+                    <span>G</span> Log in with Google
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        const eyes = document.querySelectorAll('.eye');
+        const pupils = document.querySelectorAll('.pupil');
+        const passwordInput = document.getElementById('passwordInput');
+
+        // 1. EYE TRACKING LOGIC
+        document.addEventListener('mousemove', (e) => {
+            // If the user is typing password, don't move eyes (they are covered)
+            if (document.body.classList.contains('is-shy')) return;
+
+            eyes.forEach((eye, index) => {
+                const pupil = pupils[index];
+
+                // Get position of the eye
+                const rect = eye.getBoundingClientRect();
+                const eyeCenterX = rect.left + rect.width / 2;
+                const eyeCenterY = rect.top + rect.height / 2;
+
+                // Calculate angle between mouse and eye center
+                const angle = Math.atan2(e.clientY - eyeCenterY, e.clientX - eyeCenterX);
+
+                // Distance to move the pupil (limit it so it stays in the eye)
+                const distance = Math.min(
+                    Math.hypot(e.clientX - eyeCenterX, e.clientY - eyeCenterY),
+                    6 // Max movement in pixels
+                );
+
+                // Calculate new X and Y for pupil
+                const pupilX = Math.cos(angle) * distance;
+                const pupilY = Math.sin(angle) * distance;
+
+                pupil.style.transform = `translate(${pupilX}px, ${pupilY}px) translate(-50%, -50%)`;
+            });
+        });
+
+        // 2. PASSWORD FOCUS (SHY MODE)
+        passwordInput.addEventListener('focus', () => {
+            document.body.classList.add('is-shy');
+        });
+
+        passwordInput.addEventListener('blur', () => {
+            document.body.classList.remove('is-shy');
+        });
+
+    </script>
+</body>
+
+</html>

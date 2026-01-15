@@ -4,62 +4,78 @@ import Link from "next/link"
 import { useAuth } from "../lib/auth-context.jsx"
 import { Button } from "./ui/button.jsx"
 import { ModernLogo } from "./modern-logo.jsx"
+import { Search, ShoppingBag, User, Menu } from 'lucide-react';
 
 export default function Header() {
   const { user, logout } = useAuth()
 
   return (
-    <header className="bg-background border-b sticky top-0 z-50">
-      <nav className="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
-        <Link href="/" className="flex items-center gap-2">
+    <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/80 backdrop-blur-md supports-[backdrop-filter]:bg-background/60">
+      <nav className="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
+
+        {/* Logo Section */}
+        <Link href="/" className="flex items-center gap-2 group">
           <ModernLogo size={32} />
-          <span className="text-xl font-bold hidden sm:inline">MemorEase</span>
+          <span className="font-serif text-2xl font-bold tracking-tight group-hover:text-primary transition-colors">
+            MemorEase
+          </span>
         </Link>
 
-        <div className="hidden md:flex items-center gap-6">
-          <Link href="/" className="text-foreground hover:text-primary transition">
-            Home
-          </Link>
-          <Link href="/search" className="text-foreground hover:text-primary transition">
-            Search
-          </Link>
-          <Link href="/gift-guides" className="text-foreground hover:text-primary transition">
-            Gift Guides
-          </Link>
+        {/* Desktop Navigation */}
+        <div className="hidden md:flex items-center gap-8">
+          <NavLink href="/search">Find Art</NavLink>
+          <NavLink href="/artists">Our Artists</NavLink>
+          <NavLink href="/gift-guides">Curated Gifts</NavLink>
         </div>
 
-        <div className="flex items-center gap-4">
+        {/* Actions / Auth */}
+        <div className="flex items-center gap-2">
+          <Button variant="ghost" size="icon" className="md:hidden">
+            <Search className="h-5 w-5" />
+          </Button>
+
           <Link href="/cart">
-            <Button variant="outline">Cart</Button>
+            <Button variant="ghost" size="icon" className="relative group">
+              <ShoppingBag className="h-5 w-5 group-hover:scale-110 transition-transform" />
+              <span className="sr-only">Cart</span>
+            </Button>
           </Link>
 
           {user ? (
-            <>
+            <div className="flex items-center gap-2">
               <Link href="/profile">
-                <Button variant="outline">Profile</Button>
+                <Button variant="ghost" size="icon">
+                  <User className="h-5 w-5" />
+                </Button>
               </Link>
-              <Button
-                variant="ghost"
-                onClick={() => {
-                  logout()
-                  window.location.href = "/"
-                }}
-              >
-                Logout
-              </Button>
-            </>
+            </div>
           ) : (
-            <>
+            <div className="hidden md:flex items-center gap-2">
               <Link href="/auth/login">
-                <Button variant="outline">Login</Button>
+                <Button variant="ghost" className="font-serif italic hover:bg-transparent hover:text-primary">Log in</Button>
               </Link>
               <Link href="/auth/signup">
-                <Button>Sign Up</Button>
+                <Button className="rounded-full px-6 font-medium">Join us</Button>
               </Link>
-            </>
+            </div>
           )}
+
+          <Button variant="ghost" size="icon" className="md:hidden">
+            <Menu className="h-5 w-5" />
+          </Button>
         </div>
       </nav>
     </header>
+  )
+}
+
+function NavLink({ href, children }) {
+  return (
+    <Link
+      href={href}
+      className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors relative after:content-[''] after:absolute after:left-0 after:bottom-[-4px] after:h-[1px] after:w-0 after:bg-primary after:transition-all hover:after:w-full"
+    >
+      {children}
+    </Link>
   )
 }

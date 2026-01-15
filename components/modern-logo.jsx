@@ -1,22 +1,31 @@
-export function ModernLogo({ size = 48 }) {
+export const ModernLogo = ({ size = 32, className = "" }) => {
   return (
-    <svg width={size} height={size} viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-      {/* Gift Box */}
-      <rect x="8" y="14" width="32" height="24" rx="2" fill="none" stroke="#10b981" strokeWidth="2" />
-
-      {/* Box Ribbon/Cross */}
-      <line x1="24" y1="14" x2="24" y2="38" stroke="#10b981" strokeWidth="2" />
-      <line x1="8" y1="26" x2="40" y2="26" stroke="#10b981" strokeWidth="2" />
-
-      {/* Heart accent */}
-      <path
-        d="M24 18C24 18 22 16 20 16C18.5 16 17.5 17 17.5 18.5C17.5 20 24 26 24 26C24 26 30.5 20 30.5 18.5C30.5 17 29.5 16 28 16C26 16 24 18 24 18Z"
-        fill="#ec4899"
-      />
-
-      {/* Sparkles */}
-      <circle cx="38" cy="12" r="1.5" fill="#fbbf24" />
-      <circle cx="10" cy="10" r="1" fill="#fbbf24" />
-    </svg>
+    <div className={className}>
+      <svg
+        width={size}
+        height={size}
+        viewBox="0 0 32 32"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M16 2L2 9L16 16L30 9L16 2Z"
+          fill="currentColor"
+          className="text-indigo-600 dark:text-indigo-400"
+        />
+        <path
+          d="M2 23L16 30L30 23V9L16 16L2 9V23Z"
+          fill="currentColor"
+          fillOpacity="0.7"
+          className="text-indigo-500 dark:text-indigo-300"
+        />
+        <path
+          d="M16 16V30L2 23V9L16 16Z"
+          fill="currentColor"
+          fillOpacity="0.4"
+          className="text-indigo-400 dark:text-indigo-200"
+        />
+      </svg>
+    </div>
   )
 }

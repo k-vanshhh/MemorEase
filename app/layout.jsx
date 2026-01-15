@@ -1,10 +1,10 @@
-import { Geist, Geist_Mono } from "next/font/google"
+import { Lora, Plus_Jakarta_Sans } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
 import { AuthProvider } from "../lib/auth-context.jsx"
 import "./globals.css"
 
-const geist = Geist({ subsets: ["latin"] })
-const geistMono = Geist_Mono({ subsets: ["latin"] })
+const lora = Lora({ subsets: ["latin"], variable: "--font-serif" })
+const plusJakarta = Plus_Jakarta_Sans({ subsets: ["latin"], variable: "--font-sans" })
 
 export const metadata = {
   title: "MemorEase - Personalized Gifts from Artists",
@@ -33,7 +33,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={`${geist.className} antialiased`}>
+      <body className={`${plusJakarta.variable} ${lora.variable} antialiased bg-texture-paper`}>
         <AuthProvider>
           {children}
           <Analytics />
