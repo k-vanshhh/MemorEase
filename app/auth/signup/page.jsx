@@ -6,7 +6,7 @@ import { authAPI } from "../../../lib/api.js"
 import { Button } from "../../../components/ui/button.jsx"
 import { Input } from "../../../components/ui/input.jsx"
 import Link from "next/link"
-import { InteractiveMascots } from "../../../components/auth/interactive-mascots"
+import { InteractiveCat } from "../../../components/auth/interactive-cat"
 import { ModernLogo } from "../../../components/modern-logo"
 import { Eye, EyeOff } from "lucide-react"
 
@@ -54,12 +54,12 @@ export default function SignupPage() {
   }
 
   return (
-    <div className="min-h-screen relative flex items-center justify-center overflow-hidden bg-[#f0f2f5]">
-      {/* Background Pattern */}
-      <div className="absolute inset-0 z-0 opacity-40">
-        <div className="absolute top-0 -left-4 w-72 h-72 bg-purple-300 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob"></div>
-        <div className="absolute top-0 -right-4 w-72 h-72 bg-yellow-300 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-2000"></div>
-        <div className="absolute -bottom-8 left-20 w-72 h-72 bg-pink-300 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-4000"></div>
+    <div className="min-h-screen relative flex items-center justify-center overflow-hidden bg-[#e0f2fe]">
+      {/* Pastel Background Pattern */}
+      <div className="absolute inset-0 z-0">
+        <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-pink-200 rounded-full mix-blend-multiply filter blur-3xl opacity-60 animate-blob"></div>
+        <div className="absolute top-[-10%] right-[-10%] w-[50%] h-[50%] bg-yellow-100 rounded-full mix-blend-multiply filter blur-3xl opacity-60 animate-blob animation-delay-2000"></div>
+        <div className="absolute bottom-[-10%] left-[20%] w-[50%] h-[50%] bg-violet-200 rounded-full mix-blend-multiply filter blur-3xl opacity-60 animate-blob animation-delay-4000"></div>
       </div>
 
       {/* Navbar / Top Bar */}
@@ -72,50 +72,46 @@ export default function SignupPage() {
         </Link>
 
         <Link href="/">
-          <Button variant="ghost" className="rounded-full hover:bg-white/50">
+          <Button variant="ghost" className="rounded-full hover:bg-white/50 text-slate-600">
             Back to Home
           </Button>
         </Link>
       </nav>
 
-      <div className="w-full max-w-[1100px] bg-white rounded-[32px] shadow-2xl overflow-hidden flex flex-col md:flex-row min-h-[700px] relative z-10 transition-all duration-500">
+      {/* Main Card Container */}
+      <div className="relative w-full max-w-md mx-4 mt-20">
 
-        {/* LEFT PANEL: Illustration */}
-        <div className="w-full md:w-1/2 bg-[#f2f4f8] relative flex flex-col items-center justify-center p-8 border-r border-gray-100">
-          {/* <div className="absolute top-8 left-8 text-foreground/80">
-              <ModernLogo size={28} />
-           </div> */}
+        {/* The Peek-a-Boo Cat */}
+        <InteractiveCat
+          isShy={isShy}
+          isTyping={loading ? false : (typeof document !== 'undefined' && (document.activeElement?.type === 'email' || document.activeElement?.type === 'text'))}
+          isSuccess={loading}
+          className="z-20"
+        />
 
-          <div className="w-full max-w-[400px]">
-            {/* We can maybe offset the mascots or change their positions slightly if we had props for it, but the standard family is perfect here too */}
-            <InteractiveMascots isShy={isShy} isPeeking={isPeeking} />
-          </div>
-        </div>
-
-        {/* RIGHT PANEL: Form */}
-        <div className="w-full md:w-1/2 p-8 md:p-12 flex flex-col justify-center bg-white relative">
-          <div className="flex flex-col items-center mb-8 text-center">
-            <div className="mb-4">
-              <ModernLogo size={42} className="text-black" />
+        {/* Signup Form Card */}
+        <div className="relative bg-white/90 backdrop-blur-sm rounded-[32px] shadow-2xl p-8 md:p-10 border border-white/50 z-10 transition-all duration-500">
+          <div className="flex flex-col items-center mb-6 text-center">
+            <div className="mb-4 bg-orange-100 p-3 rounded-full">
+              <ModernLogo size={32} className="text-orange-500" />
             </div>
-            <h1 className="text-3xl font-bold text-black mb-2">Create an account</h1>
-            <p className="text-gray-500">Join our community of artists and creators.</p>
+            <h1 className="text-2xl font-bold text-slate-800 mb-2">Create Account</h1>
+            <p className="text-slate-500 text-sm">Join the feline fun.</p>
           </div>
 
           {error && <div className="bg-red-50 text-red-500 text-sm p-3 rounded-lg mb-6 text-center">{error}</div>}
 
-          <form onSubmit={handleSignup} className="space-y-4 w-full max-w-[420px] mx-auto">
+          <form onSubmit={handleSignup} className="space-y-4">
             <div className="space-y-1.5">
-              <label className="text-sm font-medium text-gray-700">Name</label>
+              <label className="text-xs font-semibold uppercase tracking-wider text-slate-400 ml-1">Name</label>
               <Input type="text" placeholder="John Doe" value={name} onChange={(e) => setName(e.target.value)} required disabled={loading}
-                className="h-11 bg-white border-gray-200 focus:border-black focus:ring-black/5 rounded-xl transition-all"
-                onFocus={() => setIsShy(true)}
-                onBlur={() => setIsShy(false)}
+                className="h-11 bg-slate-50 border-slate-200 focus:border-orange-400 focus:ring-orange-400/20 rounded-xl transition-all"
+                onFocus={() => setIsPeeking(true)}
               />
             </div>
 
             <div className="space-y-1.5">
-              <label className="text-sm font-medium text-gray-700">Email</label>
+              <label className="text-xs font-semibold uppercase tracking-wider text-slate-400 ml-1">Email</label>
               <Input
                 type="email"
                 placeholder="john@example.com"
@@ -123,15 +119,14 @@ export default function SignupPage() {
                 onChange={(e) => setEmail(e.target.value)}
                 required
                 disabled={loading}
-                className="h-11 bg-white border-gray-200 focus:border-black focus:ring-black/5 rounded-xl transition-all"
-                onFocus={() => setIsShy(true)}
-                onBlur={() => setIsShy(false)}
+                className="h-11 bg-slate-50 border-slate-200 focus:border-orange-400 focus:ring-orange-400/20 rounded-xl transition-all"
+                onFocus={() => setIsPeeking(true)}
               />
             </div>
 
             <div className="grid grid-cols-1 gap-4">
               <div className="space-y-1.5">
-                <label className="text-sm font-medium text-gray-700">Password</label>
+                <label className="text-xs font-semibold uppercase tracking-wider text-slate-400 ml-1">Password</label>
                 <div className="relative">
                   <Input
                     type={showPassword ? "text" : "password"}
@@ -140,27 +135,21 @@ export default function SignupPage() {
                     onChange={(e) => setPassword(e.target.value)}
                     required
                     disabled={loading}
-                    className="h-11 bg-white border-gray-200 focus:border-black focus:ring-black/5 rounded-xl pr-10 transition-all font-sans"
-                    onFocus={() => {
-                      setIsShy(true)
-                      if (showPassword) setIsPeeking(true)
-                    }}
-                    onBlur={() => {
-                      setIsShy(false)
-                      setIsPeeking(false)
-                    }}
+                    className="h-11 bg-slate-50 border-slate-200 focus:border-orange-400 focus:ring-orange-400/20 rounded-xl pr-10 transition-all font-sans"
+                    onFocus={() => setIsShy(true)}
+                    onBlur={() => setIsShy(false)}
                   />
                   <button
                     type="button"
                     onClick={toggleShowPassword}
-                    className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 transition-colors"
+                    className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-orange-500 transition-colors"
                   >
                     {showPassword ? <Eye size={18} /> : <EyeOff size={18} />}
                   </button>
                 </div>
               </div>
               <div className="space-y-1.5">
-                <label className="text-sm font-medium text-gray-700">Confirm Password</label>
+                <label className="text-xs font-semibold uppercase tracking-wider text-slate-400 ml-1">Confirm Password</label>
                 <Input
                   type={showPassword ? "text" : "password"}
                   placeholder="••••••••"
@@ -168,24 +157,18 @@ export default function SignupPage() {
                   onChange={(e) => setConfirmPassword(e.target.value)}
                   required
                   disabled={loading}
-                  className="h-11 bg-white border-gray-200 focus:border-black focus:ring-black/5 rounded-xl transition-all font-sans"
-                  onFocus={() => {
-                    setIsShy(true)
-                    if (showPassword) setIsPeeking(true)
-                  }}
-                  onBlur={() => {
-                    setIsShy(false)
-                    setIsPeeking(false)
-                  }}
+                  className="h-11 bg-slate-50 border-slate-200 focus:border-orange-400 focus:ring-orange-400/20 rounded-xl transition-all font-sans"
+                  onFocus={() => setIsShy(true)}
+                  onBlur={() => setIsShy(false)}
                 />
               </div>
             </div>
 
-            <Button type="submit" className="w-full h-11 bg-black hover:bg-black/90 text-white rounded-xl shadow-lg shadow-black/10 font-medium text-base mt-2 transition-transform active:scale-[0.98]" disabled={loading}>
+            <Button type="submit" className="w-full h-11 bg-slate-900 hover:bg-slate-800 text-white rounded-xl shadow-lg shadow-slate-900/20 font-medium text-base mt-2 transition-transform active:scale-[0.98]" disabled={loading}>
               {loading ? "Creating Account..." : "Sign Up"}
             </Button>
 
-            <Button type="button" variant="outline" className="w-full h-11 bg-[#f8f9fa] hover:bg-[#ebedf0] border-0 text-black rounded-xl font-medium text-base flex items-center justify-center gap-2 transition-transform active:scale-[0.98]">
+            <Button type="button" variant="outline" className="w-full h-11 bg-white hover:bg-slate-50 border-slate-200 text-slate-700 rounded-xl font-medium text-base flex items-center justify-center gap-2 transition-transform active:scale-[0.98]">
               {/* Google G Icon */}
               <svg className="w-5 h-5" viewBox="0 0 24 24">
                 <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4" />
@@ -199,9 +182,9 @@ export default function SignupPage() {
           </form>
 
           <div className="mt-8 text-center">
-            <p className="text-gray-500 text-sm">
+            <p className="text-slate-400 text-sm">
               Already have an account?{" "}
-              <Link href="/auth/login" className="text-black font-semibold hover:underline decoration-2 underline-offset-4">
+              <Link href="/auth/login" className="text-orange-500 font-semibold hover:underline decoration-2 underline-offset-4">
                 Login
               </Link>
             </p>
